@@ -3,10 +3,7 @@ class CartItem
 {
     public $product;
     private int $quantity;
-
-    // TODO Skriv en konstruktor som sätter alla properties
-
-    // TODO Skriv getters för alla properties
+    //TODO Skriv getters för alla properties
     public function __construct($product, $quantity)
     {
         $this->product = $product;
@@ -17,6 +14,7 @@ class CartItem
     {
         return $this->product;
     }
+    //get quantity by index in array
     public function getqnt($index)
     {
         return $this->items[$index];
@@ -26,7 +24,6 @@ class CartItem
     {
         return $this->quantity;
     }
-
     //VG: Skall utöka antalet på ett cartItem med 1. 
     //VG: Det skall inte vara möjligt att utöka så att antalet överstiger produktens $inStock.
     public function increaseQuantity()
@@ -40,7 +37,6 @@ class Product
     public $title;
     public $price;
     public $inStock;
-
     // TODO Skriv en konstruktor som sätter alla properties
     public function __construct($id, $title, $price, $inStock)
     {
@@ -50,80 +46,41 @@ class Product
         $this->inStock = $inStock;
     }
     // TODO Skriv getters för alla properties
-    // public function getProduct()
-    // {
-    //     return  [$this->id, $this->title, $this->price, $this->inStock];
-    // }
     public function getID()
     {
-
         return $this->id;
     }
+
     public function getTitle()
     {
-
         return $this->title;
     }
+
     public function getPrice()
     {
-
         return $this->price;
     }
+
     public function getInstock()
     {
         return $this->inStock;
     }
 }
-$product1 = new product(1, "iPhone 11", 2500, 10);
-$product2 = new Product(2, "M2 SSD", 400, 3);
-$cart = array($product1, $product2);
-print_r($cart);
-echo "<br>this is the merge two product <br>";
-$car1 = json_decode(json_encode($product1), true);
-$car1 = array(array("Id" => "11", "title" => "iPhone", "price" => "5400"), array("Id" => "11", "title" => "iPhone", "price" => "5400"));
-// print_r($car1[0]->price);
-// $car2 = json_decode(json_encode($product2), true);
-// $cart2 = array_merge(json_decode(json_encode($product2), $product1));
-// $cart3 = json_decode($cart2, true);
-// print_r($cart3);
-echo "<br>";
-print_r($car1);
-echo "<br> <br>this is the JSON array for Cart with two products: ";
-$cartJSN = json_encode($cart);
-echo "<br>  ";
-print_r($cartJSN);
-echo "<br>", $cart[0]->title, "<br> <br>";
 
-print_r($product1);
-echo "<br><br>  this is the JSON array for Product1:";
-$cart1 = json_encode($product1);
-echo "<br>  ";
-print_r($cart1);
-echo "<br>this is the reverse decoding <br>";
-var_dump(json_decode($cart1, true));
-
-
-
-echo "<br>";
 class Cart
 {
     private array $items = [];
     public function addProduct($product)
     {
-        // $prods = [$qnt, $product];
         $prods = new CartItem($product, 1);
-        // $prods =  json_encode([$qnt, $product]);
-
-
-        // $this->items = [$this->items, $product];
         return array_push($this->items, $prods);
         // return array_push($this->items, json_encode($prods));
     }
     public function getItems()
     {
-
         return $this->items;
     }
+
     public function getItem($index)
     {
         return $this->items[$index];
@@ -133,55 +90,73 @@ class Cart
     {
         $product = json_encode($product);
         unset($this->items, $product);
-        // unset($this->items, $product[0]);
-        //  unset($this->items, $product);
-        //  return
     }
+
     public function showProduct()
     {
         return $this->items;
     }
 }
 
-echo " <br> This is cartItem, product1 <br>";
-$bat = new CartItem($product1, 3);
-print_r($bat);
-echo "<br><br>";
-print_r($bat->getProduct());
-echo " <br> <br>This is cartItem,  print title of product1 <br>";
-// $first_names = array_column($bat->getProduct(), 'title');
-// print_r($first_names);
-print_r($bat->getProduct()->getTitle());
-// print_r($pat->getProduct(array())->getID());
-echo "<br><br>";
+$product1 = new product(1, "iPhone 11", 2500, 10);
+$product2 = new Product(2, "M2 SSD", 400, 3);
+echo "<h4>Concat of two products object in one array</h4> ";
+$objCollection = array($product1, $product2);
+print_r($objCollection);
+echo "<h4>Merging two products(array) in one array, completely different from above</h4> ";
+$arrCollection = array(array("Id" => "11", "title" => "iPhone", "price" => "5400"), array("Id" => "11", "title" => "iPhone", "price" => "5400"));
 
-// echo "<br> new code from hereeeeeeee ";
-$collection = new Cart();
-// print_r($collection);
-// echo "<br>";
-$collection->addProduct($product1, 2);
-print_r($collection);
-echo "<br><br>";
-$collection->addProduct($product2, 1);
-// $collection->addProduct($product1, 2);
-// print_r($collection->getProduct);
-echo "<br><br>";
-echo " <br> This is Cart items, product 1,2 <br>";
-print_r($collection);
-echo "<br><br>";
-echo " <br> This is cartItem, all items <br>";
-print_r($collection->getItems());
-echo " <br><br> This is cartItem, products property of given index <br>";
-$title = $collection->getItem(1)->getProduct()->getTitle();
-// $title = $title->getProduct();
+print_r($arrCollection);
+echo "<h4>this is JSON(encoded) array for objCollection with two products: </h4>";
+$cartJSN = json_encode($objCollection);
+print_r($cartJSN);
+echo "<br> <h4>this is JSON(decoded) array for objCollection with two products: </h4>";
+$cartJSN1 = json_decode($cartJSN);
+print_r($cartJSN1);
+echo " <h4>Title of one product extracted from objCollection by using its index: </h4>";
+echo "<br>", $objCollection[0]->title;
+echo "<h4>Product one: </h4>";
+print_r($product1);
+echo "<h4> JSON(encoded) array for Product1:</h4>";
+$product1JSN = json_encode($product1);
+print_r($product1JSN);
+echo "<h4> Reverse decoding for product1 </h4> ";
+var_dump(json_decode($product1JSN, true));
+
+echo " <h4>  This is cartItem,with one item (product1)</h4> ";
+$cartItem = new CartItem($product1, 3);
+print_r($cartItem);
+echo " <h4> Extract the product from cartItem,with one item (product1)</h4> ";
+print_r($cartItem->getProduct());
+echo " <h4>Extracting Title of product from cartItem </h4>";
+print_r($cartItem->getProduct()->getTitle());
+
+$cart = new Cart();
+$cart->addProduct($product1, 2);
+echo " <h4>Creating a cart object with one product </h4>";
+print_r($cart);
+// adding a product to cart object
+$cart->addProduct($product2, 1);
+echo " <h4> This is content of Cart items, product 1 and 2</h4>";
+print_r($cart);
+
+echo " <h4> This is cartItem, all two items </h4>";
+print_r($cart->getItems());
+echo " <h4> Extracting title of one product from Cart by given index </h4>";
+$title = $cart->getItem(1)->getProduct()->getTitle();
+print_r($title);
+
+echo " <h4> Extracting of quantity by given index </h4>";
+$title = $cart->getItem(0)->getQuantity();
+
 print_r($title);
 echo "<br><br>";
-// $title = array_column($collection->getItems()[0], 'quantity');
-echo " <br><br> This is cartObject, shows the quantity of given index <br>";
-$title = $collection->getItem(0)->getQuantity();
-
-// $title = $title->getProduct();
-print_r($title);
-echo "<br><br>";
-// $car2 = (array)$collection;
+// $car2 = (array)$cart;
 // print_r($car2);
+echo "<h4>this is JSON(encoded) array for objCollection with two products: </h4>";
+$cartJSN = json_encode($cart->getItems());
+print_r($cartJSN);
+echo "<br> <h4>this is JSON(decoded) array for objCollection with two products: </h4>";
+$cartJSN1 = json_decode($cartJSN);
+print_r($cartJSN1);
+extract($cartJSN1);
