@@ -4,7 +4,7 @@
 class CartItem
 {
     private $product;
-    private int $quantity;
+    private $quantity;
 
     // TODO Skriv en konstruktor som sätter alla properties
 
