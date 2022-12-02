@@ -34,9 +34,14 @@ myCoolLoop(3, minsta(12, 8), $y); //testing functionen
 //svar på frågan 4
 $thisIsMe = array(
     "firstName" => "Saeed", "lastName" => "Askarian",
-    "age" => "48", "eyeColor" => "Brown", "homeCity" => "Stockholm"
+    "age" => "48", "EyesColor" => "Brown", "homeCity" => "Stockholm"
 );
-
+EXTR_REFS - extract($y);
+// echo $[1];
 extract($thisIsMe);
 echo "<div><h1>$firstName $lastName</h1><p>Ålder: $age</p>
- <p>Ögonfärg: $eyeColor </p><p>Hemstad: $homeCity</p></div>";
+ <p>Ögonfärg: $EyesColor </p><p>Hemstad: $homeCity</p></div>";
+// $date = new ;
+echo "<br>";
+$p = date("Y M d D h i a");
+print_r($p);

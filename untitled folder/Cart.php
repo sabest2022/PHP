@@ -4,9 +4,7 @@
 class Cart
 {
     private array $items = [];
-
     //TODO Skriv getter för items
-
     /*
      Skall lägga till en produkt i kundvagnen genom att
      skapa ett nytt cartItem och lägga till i $items array.
@@ -17,24 +15,24 @@ class Cart
      */
     public function addProduct($product)
     {
-        // if ($this->items === []) {
-        //     $item = new CartItem($product, 1);
+        if ($this->items === []) {
+            $item = new CartItem($product, 1);
 
-        //     array_push($this->items, $item);
-        //     return $item;
-        // } else {
-        //     foreach ($this->items as $item) {
+            array_push($this->items, $item);
+            return $item;
+        } else {
+            foreach ($this->items as $item) {
 
-        //         if ($item->getProduct() === $product) {
+                if ($item->getProduct() === $product) {
+                    $item->increaseQuantity();
+                    echo "This product exist already in the Cart!";
+                }
+            }
+            $item = new CartItem($product, 1);
 
-        //             return "CartItem exist in Cart!";
-        //         }
-        //     }
-        $item = new CartItem($product, 1);
-
-        array_push($this->items, $item);
-        return $item;
-        // }
+            array_push($this->items, $item);
+            return $item;
+        }
     }
     public function getItems()
     {
