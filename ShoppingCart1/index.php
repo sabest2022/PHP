@@ -25,12 +25,9 @@ echo $cartItem2->getProduct()->getTitle() . "<br>";
 echo $cartItem3->getProduct()->getTitle() . "<br>";
 
 
-
 //Skriver ut antalet produkter i kundvagnen
 echo "<h3>Antal produkter i kundvagnen: </h3>";
 echo $cart->getTotalQuantity() . "<br>"; // Detta skall skriva ut 3
-
-
 
 
 //Skriver ut totalsumman
@@ -52,7 +49,6 @@ echo $cart->getTotalSum() . "<br>"; // Detta skall skriva ut 6900
 
 //Tar bort product1 ur kundvagnen
 $cart->removeProduct($product1);
-
 
 // Skriver ut antalet produkter i kundvagnen efter borttag
 echo "<h3>Antal produkter i kundvagnen efter borttag av produkt: </h3>";
@@ -78,8 +74,8 @@ Titel: Samsung Galaxy S20
 Antal: 1
 
 -------------------------
-
 */
+$cart->addProduct($product3, 1);
 
 //Kommentera in nedan kod om du satsar på VG
 echo "<h3>Namn och kvantitet på alla items i kundvagnen: </h3>";
@@ -93,8 +89,11 @@ foreach ($cart->getItems() as $item) {
     echo "-------------------------<br><br>";
 }
 
-
 echo "<h3>Lägger till en fjärde M2 SSD fast det bara finns 3 i lager: </h3>";
-$cartItem2->increaseQuantity(); //Skall skriva ut "Kan inte lägga till. Slut i lager"
+$cartItem2->increaseQuantity();
+//Skall skriva ut "Kan inte lägga till. Slut i lager"
+
+echo "<br><br>";
+echo "<h3>This is content of Cart after adding an item that already exist:<h3> ";
 // echo "<br>";
-// print_r($cart->getProducten());
+print_r($cart->getItems());

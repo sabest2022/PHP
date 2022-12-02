@@ -17,24 +17,24 @@ class Cart
      */
     public function addProduct($product)
     {
-        // if ($this->items === []) {
-        //     $item = new CartItem($product, 1);
+        if ($this->items === []) {
+            $item = new CartItem($product, 1);
 
-        //     array_push($this->items, $item);
-        //     return $item;
-        // } else {
-        //     foreach ($this->items as $item) {
+            array_push($this->items, $item);
+            return $item;
+        } else {
+            foreach ($this->items as $item) {
 
-        //         if ($item->getProduct() === $product) {
+                if ($item->getProduct() === $product) {
+                    $item->increaseQuantity();
+                    return "CartItem exist in Cart!";
+                }
+            }
+            $item = new CartItem($product, 1);
 
-        //             return "CartItem exist in Cart!";
-        //         }
-        //     }
-        $item = new CartItem($product, 1);
-
-        array_push($this->items, $item);
-        return $item;
-        // }
+            array_push($this->items, $item);
+            return $item;
+        }
     }
     public function getItems()
     {

@@ -25,7 +25,10 @@ class Cart
 
                 if ($item->getProduct() === $product) {
                     $item->increaseQuantity();
-                    echo "This product exist already in the Cart!";
+                    echo "<h3> You added : ";
+                    print_r($product->getTitle());
+                    echo " , this item already exist in the Cart, so quantity rise up if not excess stock!<h3>";
+                    return;
                 }
             }
             $item = new CartItem($product, 1);

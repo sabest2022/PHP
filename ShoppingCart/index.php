@@ -75,6 +75,7 @@ Antal: 1
 
 */
 $cart->addProduct($product3, 1);
+
 //Kommentera in nedan kod om du satsar på VG
 echo "<h3>Namn och kvantitet på alla items i kundvagnen: </h3>";
 
