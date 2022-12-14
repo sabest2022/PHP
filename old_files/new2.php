@@ -2,13 +2,17 @@
 class CartItem
 {
     public $product;
-    private int $quantity;
+    private $quantity;
     //TODO Skriv getters för alla properties
     public function __construct($product, $quantity)
     {
         $this->product = $product;
         $this->quantity = $quantity;
         return [$product, $quantity];
+    }
+    public function __toString()
+    {
+        return $this->quantity;
     }
     public function getProduct()
     {
@@ -44,6 +48,10 @@ class Product
         $this->title = $title;
         $this->price = $price;
         $this->inStock = $inStock;
+    }
+    public function __toString()
+    {
+        return "[\"" . $this->id . "\"" . ", \"" . $this->title . "\", " . "\"" . $this->price . "\", " . "\"" . $this->inStock . "\"]";
     }
     // TODO Skriv getters för alla properties
     public function getID()
@@ -154,9 +162,91 @@ echo "<br><br>";
 // $car2 = (array)$cart;
 // print_r($car2);
 echo "<h4>this is JSON(encoded) array for objCollection with two products: </h4>";
-$cartJSN = json_encode($cart->getItems());
-print_r($cartJSN);
-echo "<br> <h4>this is JSON(decoded) array for objCollection with two products: </h4>";
-$cartJSN1 = json_decode($cartJSN);
-print_r($cartJSN1);
-extract($cartJSN1);
+$cartJSN = $cart->getItems();
+echo "<br>";
+$car = $cart->getItems();
+
+$car = json_decode(json_encode($cart->getItems()));
+print_r($car);
+echo "<br>";
+echo "<br>";
+$ca = (array) $cart->getItems();
+print_r((array) $cart->getItems());
+// echo "<br> <h4>this is JSON(decoded) array for objCollection with two products: </h4>";
+// $cartJSN1 = json_decode($cartJSN);
+echo "<br>";
+// print_r((array)$cart);
+// foreach ($cart->getItems() as $value) {
+//     foreach ($value as $val) {
+//         print_R($val);
+//         echo "<br>";
+//         foreach ($val as $v) {
+//             print_R($v);
+//             echo "<br>";
+//         }
+//         echo "<br>";
+//     }
+//     print_R($value);
+//     echo "<br>";
+//     // $array[] = $value->cart->getItems();
+// }
+
+echo "<br>";
+foreach ($ca as $value) {
+    echo "<br> The first foreach: ";
+    print_R($value);
+    $b = 0;
+    foreach ($value as $val) {
+        echo "<br>  The second foreach: ";
+        print_R($val);
+        foreach ($val as $k => $v) {
+            echo "<br>  The last foreach: ";
+            echo $k . ": " . $v .  "<br>";
+        }
+        echo "<br>";
+    }
+    // $array[] = $value->cart->getItems();
+}
+// $keys = array_keys($v);
+//             print_R($v);
+
+// To string line 52 
+$pp = "$product1" . "<br>";
+var_export($pp) . "   ";
+$pp = json_decode($pp);
+// var_dump($pp);
+// echo  "<br>" . intval($cartItem)+45  . "<br>";
+$arr = array("1", "iPhone 11", 10);
+
+// print_r(json_encode($arr));
+$age = array("One String", "Shahrad" => "Shangol", "Shadi" => "Shout", ["Name" => "Saeed", "Family" => "Askarian", "Age" => "49", "Address" => "Stallgatan"], ["Name" => "Sume", "Family" => "Sayad", "Age" => "30"]);
+arsort($age);
+
+foreach ($age as $t => $o) {
+    // var_export($t);
+    // var_export($o);
+    if (is_array($o)) {
+        $r = [];
+        foreach ($o as $x => $x_value) {
+            $r[] = $x . " : " . $x_value;
+            echo "<br>";
+        }
+        extract($r);
+        $u = "";
+        for ($s = 0; $s < count($r); $s++) {
+            $u .= $r[$s] . " , ";
+        }
+        print_r($u);
+    } elseif (is_numeric($t)) {
+        echo "<br>";
+        echo  $o;
+    } else {
+        echo "<br>";
+        echo $t . " : " . $o;
+    }
+}
+echo "<br>";
+print_r($age[2]["Name"]);
+// print_r($age[0]["Name"]);
+echo "<br>";
+var_export($age[1]);
