@@ -28,8 +28,8 @@
     <form action="test.php" method="get">
         <!-- color: <input type="text" name="color"><br>
         celebrity: <input type="text" name="celebrity"><br>  -->
-        Number 1: <input type="number" name="num1"><br>
-        Number 2: <input type="number" name="num2"><br>
+        Number 1: <input type="number" name="num1" value=0><br>
+        Number 2: <input type="number" name="num2" value=null><br>
         appels: <input type="checkbox" name="fruits[]" value="apple"><br>
         oranges: <input type="checkbox" name="fruits[]" value="orange"><br>
         <input type="submit">
@@ -80,3 +80,7 @@
 </body>
 
 </html>
+
+// $isTouch = !(isset($FirstNumber));
+// if ($isTouch == 1); {
+if (isset($FirstNumber) || isset($SecondNumber) || isset($operator)) {
